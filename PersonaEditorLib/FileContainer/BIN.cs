@@ -198,10 +198,8 @@ namespace PersonaEditorLib.FileContainer
                     writer.Write(Encoding.ASCII.GetBytes(a.Name));
                     writer.Write(new byte[IOTools.Alignment(a.Name.Length, 0x20)]);
                     int size = a.GameData.GetSize();
-                    int align = IOTools.Alignment(size, 0x20);
-                    writer.Write(size + align);
+                    writer.Write(size);
                     writer.Write(a.GameData.GetData());
-                    writer.Write(new byte[align]);
                 }
 
                 return MS.ToArray();
