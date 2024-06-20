@@ -18,6 +18,8 @@
         FTD,
         DDS,
         SPD,
-        StringList
+        StringList,
+        CTPK,
+        PNG,
     }
 }
