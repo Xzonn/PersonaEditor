@@ -32,6 +32,11 @@ namespace PersonaEditorLib
             { ".spr", FormatEnum.SPR },
             { ".spd", FormatEnum.SPD },
             { ".ctpk", FormatEnum.CTPK },
+            { ".cgfx", FormatEnum.CGFX },
+            { ".bcres", FormatEnum.CGFX },
+            { ".bcmdl", FormatEnum.CGFX },
+            { ".bctex", FormatEnum.CGFX },
+            { ".spr3", FormatEnum.SPR3 },
 
             //Graphic
             { ".fnt", FormatEnum.FNT },
@@ -102,6 +107,10 @@ namespace PersonaEditorLib
                     Obj = new SpriteContainer.SPD(data);
                 else if (type == FormatEnum.CTPK)
                     Obj = new SpriteContainer.CTPK(name, data);
+                else if (type == FormatEnum.CGFX)
+                    Obj = new SpriteContainer.CGFX(name, data);
+                else if (type == FormatEnum.SPR3)
+                    Obj = new SpriteContainer.SPR3(name, data);
                 else if (type == FormatEnum.PNG)
                     Obj = new Sprite.PNG(data);
                 else
@@ -140,6 +149,12 @@ namespace PersonaEditorLib
                 byte[] buffer = data.SubArray(0, 4);
                 if (buffer.ArrayEquals(new byte[] { 0x46, 0x4E, 0x54, 0x30 }))
                     return FormatEnum.FNT0;
+                else if (buffer.ArrayEquals(new byte[] { 0x43, 0x54, 0x50, 0x4B }))
+                    return FormatEnum.CTPK;
+                else if (buffer.ArrayEquals(new byte[] { 0x43, 0x47, 0x46, 0x58 }))
+                    return FormatEnum.CGFX;
+                else if (buffer.ArrayEquals(new byte[] { 0x89, 0x50, 0x4E, 0x47 }))
+                    return FormatEnum.PNG;
 
                 buffer = data.SubArray(8, 4);
                 if (buffer.ArrayEquals(new byte[] { 0x31, 0x47, 0x53, 0x4D }) | buffer.ArrayEquals(new byte[] { 0x4D, 0x53, 0x47, 0x31 }))
@@ -152,10 +167,8 @@ namespace PersonaEditorLib
                     return FormatEnum.BF;
                 else if (buffer.ArrayEquals(new byte[] { 0x50, 0x4D, 0x44, 0x31 }))
                     return FormatEnum.PM1;
-                else if (buffer.ArrayEquals(new byte[] { 0x43, 0x54, 0x50, 0x4B }))
-                    return FormatEnum.CTPK;
-                else if (buffer.ArrayEquals(new byte[] { 0x89, 0x50, 0x4E, 0x47 }))
-                    return FormatEnum.PNG;
+                else if (buffer.ArrayEquals(new byte[] { 0x53, 0x50, 0x52, 0x33 }))
+                    return FormatEnum.SPR3;
             }
             return FormatEnum.Unknown;
         }

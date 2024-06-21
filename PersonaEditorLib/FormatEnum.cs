@@ -19,7 +19,9 @@
         DDS,
         SPD,
         StringList,
-        CTPK,
         PNG,
+        CTPK,
+        CGFX,
+        SPR3,
     }
 }
