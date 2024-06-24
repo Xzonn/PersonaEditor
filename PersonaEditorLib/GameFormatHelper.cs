@@ -18,11 +18,14 @@ namespace PersonaEditorLib
             { ".p01",  FormatEnum.BIN },
             { ".arc",  FormatEnum.BIN },
             { ".dds2", FormatEnum.BIN },
+            { ".gsd",  FormatEnum.BIN },
+            { ".pack", FormatEnum.BIN },
+            { ".tpc",  FormatEnum.BIN },
 
             { ".bf",  FormatEnum.BF  },
             { ".pm1", FormatEnum.PM1 },
             { ".bvp", FormatEnum.BVP },
-            { ".tbl", FormatEnum.TBL },
+            // { ".tbl", FormatEnum.TBL },
 
             { ".ctd", FormatEnum.FTD },
             { ".ftd", FormatEnum.FTD },

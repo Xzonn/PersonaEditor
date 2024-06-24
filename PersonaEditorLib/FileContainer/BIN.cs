@@ -89,8 +89,10 @@ namespace PersonaEditorLib.FileContainer
                     SubFiles.Add(objectFile);
                 }
 
+                /*
                 if (reader.BaseStream.Position != reader.BaseStream.Length)
                     throw new System.Exception("BIN: read error");
+                */
             }
         }
 
