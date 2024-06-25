@@ -142,7 +142,7 @@ namespace PersonaEditorLib.FileContainer
                 {
                     returned += 0x20 + 4;
                     int size = a.GameData.GetSize();
-                    int align = IOTools.Alignment(size, 0x20);
+                    int align = 0;// IOTools.Alignment(size, 0x20);
                     returned += size + align;
                 }
             }
