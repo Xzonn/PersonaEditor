@@ -142,7 +142,7 @@ namespace PersonaEditorLib.FileContainer
                 {
                     returned += 0x20 + 4;
                     int size = a.GameData.GetSize();
-                    int align = 0;// IOTools.Alignment(size, 0x20);
+                    int align = IOTools.Alignment(size, 0x04);
                     returned += size + align;
                 }
             }
@@ -200,8 +200,10 @@ namespace PersonaEditorLib.FileContainer
                     writer.Write(Encoding.ASCII.GetBytes(a.Name));
                     writer.Write(new byte[IOTools.Alignment(a.Name.Length, 0x20)]);
                     int size = a.GameData.GetSize();
-                    writer.Write(size);
+                    int align = IOTools.Alignment(size, 0x04);
+                    writer.Write(size + align);
                     writer.Write(a.GameData.GetData());
+                    writer.Write(new byte[align]);
                 }
 
                 return MS.ToArray();
