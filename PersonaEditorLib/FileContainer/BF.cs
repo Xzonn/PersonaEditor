@@ -85,20 +85,23 @@ namespace PersonaEditorLib.FileContainer
 
                     string tempN;
 
-                    FormatEnum type = FormatEnum.DAT;
-                    if (MAP.ContainsKey(element[0]))
-                        type = MAP[element[0]];
+                    if (!MAP.TryGetValue(element[0], out FormatEnum type))
+                    {
+                        type = FormatEnum.DAT;
+                    }
 
                     tempN = "." + type.ToString();
 
-                    if (fileSize == element[3] + element[1] * element[2])
-                        endIndex = element[0];
-
-                    byte[] data = reader.ReadBytes(element[1] * element[2]);
+                    var subSize = element[1] * element[2];
+                    if (fileSize == element[3])
+                    {
+                        endIndex = element[0] - 1;
+                        subSize = (int)(reader.BaseStream.Length - reader.BaseStream.Position);
+                    }
+                    byte[] data = reader.ReadBytes(subSize);
 
                     var item = GameFormatHelper.OpenFile(tempN, data, type);
-                    if (item == null)
-                        item = GameFormatHelper.OpenFile(tempN, data, FormatEnum.DAT);
+                    item ??= GameFormatHelper.OpenFile(tempN, data, FormatEnum.DAT);
 
                     item.Tag = element[0];
 
