@@ -30,6 +30,7 @@ namespace PersonaEditorLib
             { ".ctd", FormatEnum.FTD },
             { ".ftd", FormatEnum.FTD },
             { ".ttd", FormatEnum.FTD },
+            { ".bam", FormatEnum.BAM },
 
             //Graphic containers
             { ".spr", FormatEnum.SPR },
@@ -114,6 +115,8 @@ namespace PersonaEditorLib
                     Obj = new SpriteContainer.CGFX(name, data);
                 else if (type == FormatEnum.SPR3)
                     Obj = new SpriteContainer.SPR3(name, data);
+                else if (type == FormatEnum.BAM)
+                    Obj = new FileContainer.BAM(data);
                 else if (type == FormatEnum.PNG)
                     Obj = new Sprite.PNG(data);
                 else
@@ -172,6 +175,8 @@ namespace PersonaEditorLib
                     return FormatEnum.PM1;
                 else if (buffer.ArrayEquals(new byte[] { 0x53, 0x50, 0x52, 0x33 }))
                     return FormatEnum.SPR3;
+                else if (buffer.ArrayEquals(new byte[] { 0x41, 0x54, 0x42, 0x43 }))
+                    return FormatEnum.BAM;
             }
             return FormatEnum.Unknown;
         }

@@ -23,5 +23,6 @@
         CTPK,
         CGFX,
         SPR3,
+        BAM,
     }
 }
